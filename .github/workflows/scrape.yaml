@@ -12,6 +12,8 @@ jobs:
     - uses: actions/checkout@master
     - name: Scrape
       run: ./scrape.sh 
+    - name: Collate
+      run: ./collate.sh 
     - uses: mikeal/publish-to-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub sets this for you
