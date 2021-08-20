@@ -1,5 +1,6 @@
 # /.github/workflows/daily.yml
 on:
+  workflow_dispatch:
   schedule:
     - cron:  '0 8,20 * * *' # every day at 8am and 8pm
 name: Scrape data
