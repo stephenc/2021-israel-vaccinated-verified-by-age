@@ -1,0 +1,18 @@
+# /.github/workflows/daily.yml
+on:
+  schedule:
+    - cron:  '0 8,20 * * *' # every day at 8am and 8pm
+name: Scrape data
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Scrape
+      run: ./scrape.sh 
+    - uses: mikeal/publish-to-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub sets this for you
+        BRANCH_NAME: 'main'
+
