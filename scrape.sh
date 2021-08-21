@@ -21,12 +21,19 @@ curl -fsSL 'https://datadashboardapi.health.gov.il/api/queries/_batch' \
     --data-raw '{"requests":[{"id":"0","queryName":"vaccinatedVerifiedByAge","single":false,"parameters":{}}]}' \
     > tmp.json
 
+>&2 echo "[INFO] Scraped data:"
+jq . tmp.json
+
 export CONTENT_HASH=$(sha256sum tmp.json | sed -e 's/ .*$//')
 
 if sha256sum data/*.json | grep -F "${CONTENT_HASH}" >> /dev/null 
 then
+	>&2 echo "[INFO] Data already captured"
 	rm -f tmp.json
 else
+	>&2 echo "[INFO] Persisting new data"
 	mv -f tmp.json "data/scrape-${SCRAPE_DATE}.json"
 	git add "data/scrape-${SCRAPE_DATE}.json"
 fi
+
+>&2 echo "[INFO] Done"
