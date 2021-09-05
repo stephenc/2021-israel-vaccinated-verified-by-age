@@ -18,7 +18,7 @@ curl -fsSL 'https://datadashboardapi.health.gov.il/api/queries/_batch' \
     -H 'Accept: application/json' \
     --compressed \
     -H 'Content-Type: application/json' \
-    --data-raw '{"requests":[{"id":"0","queryName":"vaccinatedVerifiedByAge","single":false,"parameters":{}}]}' \
+    --data-raw '{"requests":[{"id":"0","queryName":"VaccinationStatusAgg","single":false,"parameters":{}}]}' \
     > tmp.json
 
 >&2 echo "[INFO] Scraped data:"
