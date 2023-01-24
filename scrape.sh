@@ -19,6 +19,7 @@ curl -fsSL 'https://datadashboardapi.health.gov.il/api/queries/_batch' \
     --compressed \
     -H 'Content-Type: application/json' \
     --data-raw '{"requests":[{"id":"0","queryName":"VaccinationStatusAgg","single":false,"parameters":{}}]}' \
+    --cacert health-gov-il.pem \
     > tmp.json
 
 >&2 echo "[INFO] Scraped data:"
